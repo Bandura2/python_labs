@@ -9,13 +9,13 @@ class Insect:
         self.is_dangerous = is_dangerous
         self.is_sleeping = is_sleeping
 
-    def is_poisonous(self):
+    def is_poisonous(self) -> bool:
         return self.is_dangerous
 
-    def hibernate(self):
+    def hibernate(self) -> None:
         self.is_sleeping = True
 
-    def wake_up(self):
+    def wake_up(self) -> None:
         self.is_sleeping = False
 
     @staticmethod
@@ -25,15 +25,20 @@ class Insect:
         return Insect.instance
 
     def __str__(self):
-        return f"Insect(name={self.name}, numberOfLegs={self.number_of_legs}," \
+        return f"Insect(name={self.name}, numberOfLegs={self.number_of_legs},"\
                f" hasWings={self.has_wings}, isDangerous={self.is_dangerous}," \
                f" isSleeping={self.is_sleeping})"
 
+    @staticmethod
+    def main():
+        array_insects = [Insect("Mantis", 6, False, True, False),
+                         Insect(),
+                         Insect.get_instance(),
+                         Insect.get_instance()]
 
-array_insects = [Insect("Mantis", 6, False, True, False),
-                 Insect(),
-                 Insect.get_instance(),
-                 Insect.get_instance()]
+        for insect in array_insects:
+            print(insect)
 
-for insect in array_insects:
-    print(insect.__str__())
+
+if __name__ == '__main__':
+    Insect.main()
