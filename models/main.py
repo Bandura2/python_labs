@@ -25,20 +25,16 @@ class Insect:
         return Insect.instance
 
     def __str__(self):
-        return f"Insect(name={self.name}, numberOfLegs={self.number_of_legs},"\
-               f" hasWings={self.has_wings}, isDangerous={self.is_dangerous}," \
-               f" isSleeping={self.is_sleeping})"
-
-    @staticmethod
-    def main():
-        array_insects = [Insect("Mantis", 6, False, True, False),
-                         Insect(),
-                         Insect.get_instance(),
-                         Insect.get_instance()]
-
-        for insect in array_insects:
-            print(insect)
+        return f"Insect(name={self.name}, number_of_legs={self.number_of_legs}," \
+               f" has_wings={self.has_wings}, is_dangerous={self.is_dangerous}," \
+               f" is_sleeping={self.is_sleeping})"
 
 
 if __name__ == '__main__':
-    Insect.main()
+    array_insects = [Insect("Mantis", 6, False, True, False),
+                     Insect(),
+                     Insect.get_instance(),
+                     Insect.get_instance()]
+
+    for insect in array_insects:
+        print(insect)
