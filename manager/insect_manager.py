@@ -23,14 +23,15 @@ class InsectManager:
 
     def find_all_dangerous(self) -> [AbstractClassInsect]:
         """Method return list of insects whose field is_dangerous is True"""
-        return [insect for insect in self.__list_of_insects if insect.is_dangerous]
+        return list(filter(lambda insect: insect.is_dangerous is True, self.__list_of_insects))
 
     def find_insects_that_have_legs_more_than(self, num_of_leg) -> [AbstractClassInsect]:
         """
         Method return list of insects whose field number_of_legs is more than
         parameter num_of_leg
         """
-        return [insect for insect in self.__list_of_insects if insect.number_of_legs > num_of_leg]
+        # pylint: disable= line-too-long
+        return list(filter(lambda insect: insect.number_of_legs > num_of_leg, self.__list_of_insects))
 
 
 if __name__ == '__main__':
