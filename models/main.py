@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 class AbstractClassInsect(ABC):
     """
-    Create class Insect with fields: name, number_of_legs, has_wings,
+    Create abstract class Insect with fields: name, number_of_legs, has_wings,
     is_dangerous, is_sleeping and methods: is_poisonous, hibernate, wake_up
     """
     __instance = None
@@ -18,33 +18,39 @@ class AbstractClassInsect(ABC):
         self.is_dangerous = is_dangerous
         self.is_sleeping = is_sleeping
 
-    def is_poisonous(self) -> bool:
-        """Method return field is_dangerous"""
+    def is_poisonous(self):
+        """
+        :return: field is_dangerous
+        """
         return self.is_dangerous
 
-    def hibernate(self) -> None:
+    def hibernate(self):
         """Method assigns a variable is_sleeping True"""
         self.is_sleeping = True
 
-    def wake_up(self) -> None:
+    def wake_up(self):
         """Method assigns a variable is_sleeping False"""
         self.is_sleeping = False
 
     @staticmethod
     def get_instance():
-        """Method return singleton field instance"""
+        """
+        :return: singleton field instance
+        """
         if not AbstractClassInsect.__instance:
             AbstractClassInsect.__instance = AbstractClassInsect()
         return AbstractClassInsect.__instance
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"Insect(name={self.name}, number_of_legs={self.number_of_legs}," \
                f" has_wings={self.has_wings}, is_dangerous={self.is_dangerous}," \
                f" is_sleeping={self.is_sleeping})"
 
     @staticmethod
-    def count_of_element(*args) -> int:
-        """Method counts how many elements are passed to it"""
+    def count_of_element(*args):
+        """
+        Method counts how many elements are passed to it
+        """
         count = 0
 
         for _ in args:
@@ -55,10 +61,10 @@ class AbstractClassInsect(ABC):
 
     # pylint: disable= missing-function-docstring
     @abstractmethod
-    def can_inject_poison(self) -> bool:
+    def can_inject_poison(self):
         pass
 
     # pylint: disable= missing-function-docstring
     @abstractmethod
-    def survive_over_winter(self) -> bool:
+    def survive_over_winter(self):
         pass
