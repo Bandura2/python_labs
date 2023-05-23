@@ -8,8 +8,7 @@ from models.mosquito import Mosquito
 
 class InsectManager:
     """
-    Create class InsectManager with private field list_of_insects
-    with getter.
+    Create class InsectManager with private field list_of_insects.
     Manager have methods sdd_insect, find_all_dangerous
     and find_insects_that_have_num_of_legs_more_than
     """
@@ -17,13 +16,17 @@ class InsectManager:
     def __init__(self):
         self.__list_of_insects = []
 
-    def add_insect(self, insect) -> None:
-        """Method add insect to list that are field"""
+    def add_insect(self, insect):
+        """
+        Method add insect to list that are field
+        """
         self.__list_of_insects.append(insect)
 
-    def find_all_dangerous(self) -> [AbstractClassInsect]:
-        """Method return list of insects whose field is_dangerous is True"""
-        return list(filter(lambda insect: insect.is_dangerous is True, self.__list_of_insects))
+    def find_all_dangerous(self):
+        """
+        Method return list of insects whose field is_dangerous is True
+        """
+        return list(filter(lambda insect: insect.is_dangerous, self.__list_of_insects))
 
     def find_insects_that_have_legs_more_than(self, num_of_leg) -> [AbstractClassInsect]:
         """
