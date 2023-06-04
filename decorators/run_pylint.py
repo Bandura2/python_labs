@@ -8,8 +8,9 @@ def run_pylint(func):
     :param func: function that decorated
     :return: function
     """
+
     def wrapper(*args, **kwargs):
-        subprocess.run(f"pylint {func.__code__.co_filename}", shell=True, check=False)
+        subprocess.run(f"pylint {func.__code__.co_filename}")
         return func(*args, **kwargs)
 
     return wrapper

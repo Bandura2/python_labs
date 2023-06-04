@@ -43,6 +43,7 @@ class RegularInsectManager:
         :return: list of insects whose field number_of_legs is more than
         parameter num_of_leg
         """
+
         # pylint: disable= line-too-long
         return list(filter(lambda insect: insect.number_of_legs > num_of_leg, self.__list_of_insects))
 
@@ -67,9 +68,9 @@ class RegularInsectManager:
         Method create list with index of insect and insect
         :return: list insects with it index
         """
-        return [f'{index}: {insect}' for index, insect in enumerate(self.__list_of_insects, 1)]
+        return [f'{index}: {insect}' for index, insect in enumerate(self.__list_of_insects)]
 
-    def get_insect_with_results_can_inject_poison(self):
+    def get_dictionary_with_insect_that_can_inject_poison(self):
         """
         Method create list with insects and bool fields results method can_inject_poison
         :return: list insects with results working methods can_inject_poison
@@ -102,52 +103,55 @@ if __name__ == '__main__':
     manager.add_insect(Mantis("Olena", 8, False, True, False, {"live insects1", "more insects1"}))
     manager.add_insect(Mantis("Zoro", 2, False, True, True, {"live insects2", "more insects2"}))
 
-    print("\n----------------------------Prints for regular manager----------------------------")
-
-    print("\nPrint all insects that have more than 4 leg")
-    for element in manager.find_insects_that_have_legs_more_than(4):
-        print(element)
-
-    print("\nPrint all dangerous insects")
-    for element in manager.find_all_dangerous():
-        print(element)
-
-    print("\nPrint list of results method can_inject_poison()")
-    for element in manager.get_list_with_results_can_inject_poison():
-        print(element)
-
-    print("\nPrint vocabulary {num_insect: object_insect}")
-    for element in manager.get_insects_with_index():
-        print(element)
-
-    print("\nPrint vocabulary {object_insect: result_method_can_inject_poison")
-    for element in manager.get_insect_with_results_can_inject_poison():
-        print(element)
-
-    print("\nPrint all str fields with manager")
-    for element in manager:
-        print(element.get_fields_by_type(str))
-
-    results = manager.check_condition(lambda insect: insect.number_of_legs > 4)
-
-    print("\nPrint bool are all insect have more than 4 leg")
-    print(results["all"])
-    print("Print bool is any insect have more than 4 leg")
-    print(results['any'])
-
-    print("\n----------------------------Prints for set manager----------------------------")
-
     set_manager = SetManager(manager)
+    #
+    # print("\n----------------------------Prints for regular manager----------------------------")
+    #
+    # print("\nPrint all insects that have more than 4 leg")
+    # for element in manager.find_insects_that_have_legs_more_than(4):
+    #     print(element)
+    #
+    # print("\nPrint all dangerous insects")
+    # for element in manager.find_all_dangerous():
+    #     print(element)
+    #
+    # print("\nPrint list of results method can_inject_poison()")
+    # for element in manager.get_list_with_results_can_inject_poison():
+    #     print(element)
+    #
+    # print("\nPrint vocabulary {num_insect: object_insect}")
+    # for element in manager.get_insects_with_index():
+    #     print(element)
+    #
+    # print("\nPrint vocabulary {object_insect: result_method_can_inject_poison}")
+    # for element in manager.get_dictionary_with_insect_that_can_inject_poison():
+    #     print(element)
+    #
+    # print("\nPrint all str fields with manager")
+    # for element in manager:
+    #     print(element.get_fields_by_type(str))
+    #
+    # results_check_condition = manager.check_condition(lambda insect: insect.number_of_legs > 4)
+    #
+    # print("\nPrint bool are all insect have more than 4 leg")
+    # print(results_check_condition["all"])
+    # print("Print bool is any insect have more than 4 leg")
+    # print(results_check_condition['any'])
+    #
+    # print("\n----------------------------Prints for set manager----------------------------")
+    #
+    # print("\nPrint count of food for all insect")
+    # print(len(set_manager))
+    #
+    # print("\nPrint food for all insect in manager")
+    # food = iter(set_manager)
+    # NUMBER_FOOD = 0
+    # for _ in range(len(set_manager)):
+    #     print(f"{NUMBER_FOOD} {next(food)}")
+    #     NUMBER_FOOD += 1
+    #
+    # print("\nPrint food number 10")
+    # print(set_manager[10])
 
-    print("\nPrint count of food for all insect")
-    print(len(set_manager))
-
-    print("\nPrint food for all insect in manager")
-    food = iter(set_manager)
-    NUMBER_FOOD = 0
-    for _ in range(len(set_manager)):
-        print(f"{NUMBER_FOOD} {next(food)}")
-        NUMBER_FOOD += 1
-
-    print("\nPrint food number 10")
-    print(set_manager[10])
+    mantis = Mantis("NAME", 4, False, True, False, {"insects", "more"})
+    mantis.eat("orange")
