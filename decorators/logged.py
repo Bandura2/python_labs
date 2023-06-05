@@ -19,13 +19,16 @@ def logged(exception, mode):
                 return func(*args, **kwargs)
             except exception:
                 if mode == "console":
-                    logging.basicConfig(format='%(levelname)s %(asctime)s\nmassage: %(message)s')
+                    logging.basicConfig(level=logging.ERROR, format='%(levelname)s %(asctime)s\n%(message)s')
                     logging.error(exception(str(exception)))
                 else:
-                    relative_path = os.path.normpath(os.path.join(os.getcwd(), '..', 'error_logs'))
-                    format_error = '\n%(levelname)s %(asctime)s\nmassage: %(message)s'
-                    logging.basicConfig(filename=relative_path, format=format_error)
+                    # pylint: disable= line-too-long
+                    relative_path = os.path.normpath(os.path.join(os.getcwd(), '..', 'error_logs.log'))
+                    format_error = '\n%(levelname)s %(asctime)s\n%(message)s'
+                    logging.basicConfig(level=logging.ERROR, filename=relative_path, format=format_error)
                     logging.error(exception(repr(exception)))
+
+                return None
 
         return wrapper
     return nested_logged

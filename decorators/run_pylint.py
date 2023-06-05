@@ -10,7 +10,7 @@ def run_pylint(func):
     """
 
     def wrapper(*args, **kwargs):
-        subprocess.run(f"pylint {func.__code__.co_filename}")
+        subprocess.run(f"pylint {func.__code__.co_filename}", check=True)
         return func(*args, **kwargs)
 
     return wrapper

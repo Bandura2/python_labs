@@ -93,9 +93,12 @@ class AbstractClassInsect(ABC):
     def __iter__(self):
         return iter(self.edible_food_set)
 
-    @logged(FeedingNotEdibleFood, "file")
+    @logged(FeedingNotEdibleFood, "console")
     def eat(self, food):
-        if food in self.edible_food_set:
-            print(f"{type(self).__name__} eat {food}")
-        else:
+        try:
+            if food in self.edible_food_set:
+                print(f"{type(self).__name__} eat {food}")
+            else:
+                raise KeyError
+        except KeyError:
             raise FeedingNotEdibleFood
