@@ -1,5 +1,9 @@
 """python package with models"""
+
 from abc import ABC, abstractmethod
+
+from custom_exceptions.feeding_not_edible_food_exception import FeedingNotEdibleFood
+from decorators.logged import logged
 
 
 class AbstractClassInsect(ABC):
@@ -11,13 +15,13 @@ class AbstractClassInsect(ABC):
 
     # pylint: disable= too-many-arguments
     def __init__(self, name="", number_of_legs=0, has_wings=False,
-                 is_dangerous=False, is_sleeping=False, favorite_food_set=None):
+                 is_dangerous=False, is_sleeping=False, edible_food_set=None):
         self.name = name
         self.number_of_legs = number_of_legs
         self.has_wings = has_wings
         self.is_dangerous = is_dangerous
         self.is_sleeping = is_sleeping
-        self.favorite_food_set = favorite_food_set or set()
+        self.edible_food_set = edible_food_set or set()
 
     def is_poisonous(self):
         """
@@ -80,11 +84,21 @@ class AbstractClassInsect(ABC):
         """
         Method create dictionary with all attributes and values of the object,
         filtered by the specified value type
-        :param type_field: type fields to filter
+        :param type_field: fields to filter
         :return: a dictionary with all attributes and values of the object,
         filtered by the specified value type
         """
         return {key: value for key, value in self.__dict__.items() if isinstance(value, type_field)}
 
     def __iter__(self):
-        return self.favorite_food_set
+        return iter(self.edible_food_set)
+
+    @logged(FeedingNotEdibleFood, "console")
+    def eat(self, food):
+        try:
+            if food in self.edible_food_set:
+                print(f"{type(self).__name__} eat {food}")
+            else:
+                raise KeyError
+        except KeyError:
+            raise FeedingNotEdibleFood
